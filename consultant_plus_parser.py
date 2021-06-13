@@ -10,10 +10,14 @@ from pymongo import MongoClient
 #некоммерческая версия консультант плюс
 #http://www.consultant.ru/cons/cgi/online.cgi?req=home&utm_csource=online&utm_cmedium=button
 
-def download_document(headless = False, name =''):
+def download_documents(headers, headless = False):
 
-    if name == '':
-        return
+    client = MongoClient('localhost', 27017)
+    db = client['med_expert']
+
+    df = pd.DataFrame(list(db['standart'].find({})))
+    prikaz = df['doc_name'].to_list()
+
     opt = webdriver.ChromeOptions()
     if headless:
         opt.add_argument("--headless")
@@ -25,12 +29,26 @@ def download_document(headless = False, name =''):
     assert "КонсультантПлюс - Стартовая страница" in driver.title
 
     elem = driver.find_element_by_name('dictFilter')
-    elem.send_keys(name)
+    elem.send_keys(prikaz[0])
     time.sleep(1)
     elem.send_keys(Keys.RETURN)
-    time.sleep(10)
+    time.sleep(2)
+    #elem = driver.find_element_by_xpath("//a[@class='a']/@href")
+    #elem = driver.find_element_by_class_name("a")
+    elem = driver.find_element_by_partial_link_text("Об утверждении")
+    doc_link = elem.get_property('href')
 
-    #driver.close()
+    driver.get(doc_link)
+    time.sleep(2)
+    driver.close()
+    
+
+
+    #response = requests.get(url=url, headers=headers).text
+    #root = html.fromstring(response)
+    #link = root.xpath("//a[@class='a']")
+
+
 
 def get_standart_info(headers):
 
@@ -39,21 +57,10 @@ def get_standart_info(headers):
     root = html.fromstring(response)
 
     links = root.xpath("//contents/ul/li/a/@href")
-    return links
-
-
-if __name__ == "__main__":
-
-    headers = {
-        'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36'}
-
-    info = get_standart_info(headers=headers)
-
-    print(info)
 
     main_link = 'http://www.consultant.ru'
     l = []
-    for link in info:
+    for link in links:
         endpoint = main_link + link
         response = requests.get(url=endpoint, headers=headers).text
         root = html.fromstring(response)
@@ -84,4 +91,14 @@ if __name__ == "__main__":
     db.drop_collection('standart')
     db['standart'].insert_many(l)
 
-    #download_document(headless=False, name="Приказ Минздрава России от 20 декабря 2012 г. N 1139н")
+    return
+
+
+if __name__ == "__main__":
+
+    headers = {
+        'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36'}
+
+    #get_standart_info(headers=headers)
+
+    download_documents(headers=headers, headless=False)
