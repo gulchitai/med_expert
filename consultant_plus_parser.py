@@ -154,7 +154,7 @@ def download_clinic_reg(headless = False):
     df = pd.DataFrame(list(db['clinic_reg'].find({})))
     clinics = df['name'].to_list()
 
-    db.drop_collection('clinic_reg_documents')
+    #db.drop_collection('clinic_reg_documents')
 
     opt = webdriver.ChromeOptions()
     if headless:
@@ -162,8 +162,11 @@ def download_clinic_reg(headless = False):
     opt.add_argument('--start-maximized')
 
     driver = webdriver.Chrome(options=opt, executable_path="C:/Users/gulch/PycharmProjects/med_expert/chromedriver.exe")
-
+    i = 1
     for clinic in clinics:
+        if i < 255:
+            i = i + 1
+            continue
         print(clinic)
         driver.get('http://www.consultant.ru/cons/cgi/online.cgi')
         assert "КонсультантПлюс - Стартовая страница" in driver.title
@@ -176,6 +179,7 @@ def download_clinic_reg(headless = False):
         search_string = search_string.replace('Юинга', '')
         search_string = search_string.replace('Беркитта', '')
         search_string = search_string.replace('Сезари', '')
+        search_string = search_string.replace('ацил-КоА', '')
 
         elem.send_keys(search_string)
         time.sleep(1)
