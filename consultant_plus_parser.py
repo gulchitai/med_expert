@@ -171,7 +171,8 @@ def download_clinic_reg(headless = False):
         elem = driver.find_element_by_name('dictFilter')
         search_string = " ".join(clinic)
         search_string = search_string.replace('(ХВГС)','')
-        
+        search_string = search_string.replace('Меркеля', '')
+
         elem.send_keys(search_string)
         time.sleep(1)
         elem.send_keys(Keys.RETURN)

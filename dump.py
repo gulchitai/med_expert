@@ -19,7 +19,7 @@ def dump_tables_to_csv():
         df = pd.DataFrame(list(db[collection_name].find({})))
         collection_name = collection_name.replace('/', '=')
         filename = path + '/' + collection_name + '.csv'
-        df.to_csv(filename)
+        df.to_csv(filename, encoding='windows-1251')
         print('Create file ' + filename)
 
 if __name__ == "__main__":
