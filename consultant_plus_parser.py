@@ -169,9 +169,13 @@ def download_clinic_reg(headless = False):
         assert "КонсультантПлюс - Стартовая страница" in driver.title
 
         elem = driver.find_element_by_name('dictFilter')
+        clinic[0] = clinic[0] + 'рекомендации'
         search_string = " ".join(clinic)
         search_string = search_string.replace('(ХВГС)','')
         search_string = search_string.replace('Меркеля', '')
+        search_string = search_string.replace('Юинга', '')
+        search_string = search_string.replace('Беркитта', '')
+        search_string = search_string.replace('Сезари', '')
 
         elem.send_keys(search_string)
         time.sleep(1)
