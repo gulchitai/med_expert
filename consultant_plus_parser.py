@@ -16,7 +16,7 @@ def download_documents(headers, headless = False):
     db = client['med_expert']
 
     df = pd.DataFrame(list(db['standart'].find({})))
-    prikaz = df['doc_name'].to_list()
+    prikazi = df['doc_name'].to_list()
 
     opt = webdriver.ChromeOptions()
     if headless:
@@ -24,30 +24,34 @@ def download_documents(headers, headless = False):
     opt.add_argument('--start-maximized')
 
     driver = webdriver.Chrome(options=opt, executable_path="C:/Users/gulch/PycharmProjects/med_expert/chromedriver.exe")
-    driver.get('http://www.consultant.ru/cons/cgi/online.cgi')
-    print(driver.title)
-    assert "КонсультантПлюс - Стартовая страница" in driver.title
 
-    elem = driver.find_element_by_name('dictFilter')
-    elem.send_keys(prikaz[0])
-    time.sleep(1)
-    elem.send_keys(Keys.RETURN)
-    time.sleep(2)
-    #elem = driver.find_element_by_xpath("//a[@class='a']/@href")
-    #elem = driver.find_element_by_class_name("a")
-    elem = driver.find_element_by_partial_link_text("Об утверждении")
-    doc_link = elem.get_property('href')
+    for prikaz in prikazi:
+        print(prikaz)
+        driver.get('http://www.consultant.ru/cons/cgi/online.cgi')
+        assert "КонсультантПлюс - Стартовая страница" in driver.title
 
-    driver.get(doc_link)
-    time.sleep(2)
+        elem = driver.find_element_by_name('dictFilter')
+        elem.send_keys(prikaz)
+        time.sleep(1)
+        elem.send_keys(Keys.RETURN)
+        time.sleep(2)
+        elem = driver.find_element_by_partial_link_text("Об утверждении")
+        doc_link = elem.get_property('href')
+        print(doc_link)
+        driver.get(doc_link)
+        time.sleep(2)
+        elem = driver.find_element_by_xpath("//button[@class='dots']").click()
+        time.sleep(1)
+        elem = driver.find_element_by_class_name('contextMenuItem').click()
+        time.sleep(1)
+        elem = driver.find_elements_by_class_name('table')
+        #print(elem)
+        bs = elem[1].find_elements_by_class_name('contextMenuItem')
+        #print(len(bs))
+        bs[6].click()
+        time.sleep(1)
+
     driver.close()
-    
-
-
-    #response = requests.get(url=url, headers=headers).text
-    #root = html.fromstring(response)
-    #link = root.xpath("//a[@class='a']")
-
 
 
 def get_standart_info(headers):
