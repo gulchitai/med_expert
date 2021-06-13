@@ -18,6 +18,8 @@ def download_documents(headers, headless = False):
     df = pd.DataFrame(list(db['standart'].find({})))
     prikazi = df['doc_name'].to_list()
 
+    db.drop_collection('standart_documents')
+
     opt = webdriver.ChromeOptions()
     if headless:
         opt.add_argument("--headless")
@@ -50,6 +52,10 @@ def download_documents(headers, headless = False):
         #print(len(bs))
         bs[6].click()
         time.sleep(1)
+        d = {}
+        d['name'] = prikaz
+        d['link'] = doc_link
+        db['standart_documents'].insert_one(d)
 
     driver.close()
 
