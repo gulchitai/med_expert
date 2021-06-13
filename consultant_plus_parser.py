@@ -103,6 +103,49 @@ def get_standart_info(headers):
 
     return
 
+#клинические рекомендации
+def get_clinic_reg_info(headers):
+    main_link = "http://www.consultant.ru/document/cons_doc_LAW_141711/529d8da5a3fd5a6e7bac9da26bc0f1ce1c48b77a/"
+    response = requests.get(url=main_link, headers=headers).text
+    root = html.fromstring(response)
+
+    links = root.xpath("//contents/ul/li/a/@href")
+
+    main_link = 'http://www.consultant.ru'
+    l = []
+    for link in links:
+        endpoint = main_link + link
+        response = requests.get(url=endpoint, headers=headers).text
+        root = html.fromstring(response)
+        title = ''
+        for i in root.xpath('//tr'):
+            t0 = i.xpath("./td[1]/div/h1/div/span/span/text()")
+            t1 = i.xpath("./td[1]/div/div/span/text()")
+            t2 = i.xpath("./td[2]/div/div/span/text()")
+            t3 = i.xpath("./td[3]/div/div/span/text()")
+            #t4 = i.xpath("./td[4]/div/div/span/text()")
+            if len(t0) > 0:
+                title = t0[0]
+
+            if (t1 == []) and (t2 == []) and (t3 == []):
+                continue
+            d = {}
+            d['title'] = title
+            d['name'] = t1
+            d['mkb'] = t2
+            d['col'] = t3
+            #d['doc_name'] = t4
+            l.append(d)
+
+    print(l)
+
+    client = MongoClient('localhost', 27017)
+    db = client['med_expert']
+    db.drop_collection('clinic_reg')
+    db['clinic_reg'].insert_many(l)
+
+    return
+
 
 if __name__ == "__main__":
 
@@ -111,4 +154,6 @@ if __name__ == "__main__":
 
     #get_standart_info(headers=headers)
 
-    download_documents(headers=headers, headless=False)
+    #download_documents(headers=headers, headless=False)
+
+    get_clinic_reg_info(headers=headers)
