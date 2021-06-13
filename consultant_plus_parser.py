@@ -146,6 +146,59 @@ def get_clinic_reg_info(headers):
 
     return
 
+def download_clinic_reg(headless = False):
+
+    client = MongoClient('localhost', 27017)
+    db = client['med_expert']
+
+    df = pd.DataFrame(list(db['clinic_reg'].find({})))
+    clinics = df['name'].to_list()
+
+    db.drop_collection('clinic_reg_documents')
+
+    opt = webdriver.ChromeOptions()
+    if headless:
+        opt.add_argument("--headless")
+    opt.add_argument('--start-maximized')
+
+    driver = webdriver.Chrome(options=opt, executable_path="C:/Users/gulch/PycharmProjects/med_expert/chromedriver.exe")
+
+    for clinic in clinics:
+        print(clinic)
+        driver.get('http://www.consultant.ru/cons/cgi/online.cgi')
+        assert "КонсультантПлюс - Стартовая страница" in driver.title
+
+        elem = driver.find_element_by_name('dictFilter')
+        search_string = " ".join(clinic)
+        search_string = search_string.replace('(ХВГС)','')
+        
+        elem.send_keys(search_string)
+        time.sleep(1)
+        elem.send_keys(Keys.RETURN)
+        time.sleep(2)
+        elem = driver.find_element_by_partial_link_text("Клинические")
+        doc_link = elem.get_property('href')
+        print(doc_link)
+        driver.get(doc_link)
+        time.sleep(2)
+        elem = driver.find_element_by_xpath("//button[@class='dots']").click()
+        time.sleep(1)
+        elem = driver.find_element_by_class_name('contextMenuItem').click()
+        time.sleep(1)
+        elem = driver.find_elements_by_class_name('table')
+        #print(elem)
+        bs = elem[1].find_elements_by_class_name('contextMenuItem')
+        #print(len(bs))
+        bs[6].click()
+        time.sleep(1)
+        d = {}
+        d['name'] = search_string
+        d['link'] = doc_link
+        db['clinic_reg_documents'].insert_one(d)
+
+    driver.close()
+
+
 
 if __name__ == "__main__":
 
@@ -156,4 +209,6 @@ if __name__ == "__main__":
 
     #download_documents(headers=headers, headless=False)
 
-    get_clinic_reg_info(headers=headers)
+    #get_clinic_reg_info(headers=headers)
+
+    download_clinic_reg(headless=False)
