@@ -31,14 +31,27 @@ def get_number_date(filename):
             break
     return num, date
 
-def get_standart_table1(filename):
+def first_table_is_valid(table1):
+    rows = table1.find_all("tr")
+    for i, row in enumerate(rows):
+        if i < 2:
+            continue
+        columns = row.find_all("td")
+        if len(columns) < 4:
+            return False
+        else:
+            return True
 
-    #filename = './docs/Приказ Минздрава России от 20.12.2012 N 1095н  Об утверждени.htm'
+def get_standart_table1(filename):
 
     f = open(filename, 'r', encoding="utf8")
     result = f.read()
     parsed_html = bs(result, 'lxml')
     tables = parsed_html.find_all("table")
+
+    #нужна проверка на первую таблицу
+    if first_table_is_valid(tables[0])==False:
+        tables.pop(0)
 
     for k, table in enumerate(tables):
         if k > 2:
