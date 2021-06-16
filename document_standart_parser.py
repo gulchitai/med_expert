@@ -169,7 +169,7 @@ def get_standart_table3(filename):
         tables.pop(0)
 
     d = {}
-    
+
     if len(tables) == 0:
         return d
     #третья таблица не разбита - цикл по таблицам не нужен
@@ -208,7 +208,12 @@ def get_standart_table3(filename):
     d['rows'] = rl
     return d
 
+def get_standart_header(filename):
 
+    f = open(filename, 'r', encoding="utf8")
+    result = f.read()
+    parsed_html = bs(result, 'lxml')
+    print(parsed_html.find('div', text=re.compile('Возраст')).contents)
 
 if __name__ == "__main__":
 
@@ -234,6 +239,10 @@ if __name__ == "__main__":
             zip_ref.extractall(path)
         filename, _ = os.path.splitext(filename)
         filename += '.htm'
+
+        get_standart_header(filename)
+        break
+
         data = get_standart_table1(filename)
         db['standart_table1'].insert_one(data)
 
