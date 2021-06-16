@@ -213,7 +213,35 @@ def get_standart_header(filename):
     f = open(filename, 'r', encoding="utf8")
     result = f.read()
     parsed_html = bs(result, 'lxml')
-    print(parsed_html.find('div', text=re.compile('Возраст')).contents)
+    d = {}
+    #возраст
+    elem = parsed_html.find('div', text=re.compile('Возраст'))
+    if elem.is_empty_element:
+        elem = parsed_html.find('div', text=re.compile('возраст'))
+    if elem.is_empty_element == False:
+        d['vozrast'] = elem.contents
+
+    #пол
+    elem = parsed_html.find('div', text=re.compile('Пол'))
+    if elem != None:
+        d['pol'] = elem.contents
+
+    #Вид медицинской помощи
+    elem = parsed_html.find('div', text=re.compile('Вид медицинской помощи'))
+    if elem != None:
+        d['vid'] = elem.contents
+
+    #Условия оказания
+    elem = parsed_html.find('div', text=re.compile('Условия оказания'))
+    if elem != None:
+        d['usloviya'] = elem.contents
+
+    #Форма оказания
+    elem = parsed_html.find('div', text=re.compile('Форма оказания'))
+    if elem != None:
+        d['forma'] = elem.contents
+
+    pprint(d)
 
 if __name__ == "__main__":
 
