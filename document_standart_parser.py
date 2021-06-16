@@ -214,34 +214,58 @@ def get_standart_header(filename):
     result = f.read()
     parsed_html = bs(result, 'lxml')
     d = {}
+    num, date = get_number_date(filename)
+    d['date'] = date
+    d['number'] = num
+
     #возраст
     elem = parsed_html.find('div', text=re.compile('Возраст'))
-    if elem.is_empty_element:
+    if elem == None:
         elem = parsed_html.find('div', text=re.compile('возраст'))
-    if elem.is_empty_element == False:
-        d['vozrast'] = elem.contents
+    if elem != None:
+        d['vozrast'] = elem.contents[0]
 
     #пол
     elem = parsed_html.find('div', text=re.compile('Пол'))
     if elem != None:
-        d['pol'] = elem.contents
+        d['pol'] = elem.contents[0]
 
     #Вид медицинской помощи
     elem = parsed_html.find('div', text=re.compile('Вид медицинской помощи'))
     if elem != None:
-        d['vid'] = elem.contents
+        d['vid'] = elem.contents[0]
 
     #Условия оказания
     elem = parsed_html.find('div', text=re.compile('Условия оказания'))
     if elem != None:
-        d['usloviya'] = elem.contents
+        d['usloviya'] = elem.contents[0]
 
     #Форма оказания
     elem = parsed_html.find('div', text=re.compile('Форма оказания'))
     if elem != None:
-        d['forma'] = elem.contents
+        d['forma'] = elem.contents[0]
 
-    pprint(d)
+    # Фаза
+    elem = parsed_html.find('div', text=re.compile('Фаза'))
+    if elem != None:
+        d['faza'] = elem.contents[0]
+
+    # Стадия
+    elem = parsed_html.find('div', text=re.compile('Стадия'))
+    if elem != None:
+        d['stadiya'] = elem.contents[0]
+
+    # Осложнения
+    elem = parsed_html.find('div', text=re.compile('Осложнения'))
+    if elem != None:
+        d['oslozneniya'] = elem.contents[0]
+
+    # Средние сроки лечения
+    elem = parsed_html.find('div', text=re.compile('Средн'))
+    if elem != None:
+        d['sroki'] = elem.contents[0]
+
+    return d
 
 if __name__ == "__main__":
 
@@ -256,6 +280,7 @@ if __name__ == "__main__":
     db.drop_collection('standart_table1')
     db.drop_collection('standart_table2')
     db.drop_collection('standart_table3')
+    db.drop_collection('standart_header')
 
     for file in files:
         _, file_extension = os.path.splitext(file)
@@ -268,8 +293,8 @@ if __name__ == "__main__":
         filename, _ = os.path.splitext(filename)
         filename += '.htm'
 
-        get_standart_header(filename)
-        break
+        data = get_standart_header(filename)
+        db['standart_header'].insert_one(data)
 
         data = get_standart_table1(filename)
         db['standart_table1'].insert_one(data)
