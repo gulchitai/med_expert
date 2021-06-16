@@ -148,6 +148,66 @@ def get_standart_table2(filename):
             d['rows'] = rl
     return d
 
+def get_standart_table3(filename):
+
+    f = open(filename, 'r', encoding="utf8")
+    result = f.read()
+    parsed_html = bs(result, 'lxml')
+    tables = parsed_html.find_all("table")
+
+    #нужна проверка на первую таблицу
+    if first_table_is_valid(tables[0])==False:
+        tables.pop(0)
+
+    #это все первая таблица
+    tables.pop(0)
+    tables.pop(0)
+    tables.pop(0)
+
+    #это все вторая таблица
+    while len(tables) > 0 and second_table_is_valid(tables[0]):
+        tables.pop(0)
+
+    d = {}
+    
+    if len(tables) == 0:
+        return d
+    #третья таблица не разбита - цикл по таблицам не нужен
+
+    rl = []
+    num, date = get_number_date(filename)
+    d['date'] = date
+    d['number'] = num
+    #d['table_name'] = table.find_previous_sibling('div').find_previous_sibling('div').get_text()
+    d['table_name'] = 'Перечень лекарственных препаратов'
+
+    rows = tables[0].find_all("tr")
+
+    for i, row in enumerate(rows):
+        if i == 0:
+            continue
+        columns = row.find_all("td")
+        dc = {}
+        for j, col in enumerate(columns):
+            if j == 0:
+                dc['code'] = ' '.join(col.get_text().split())
+            if j == 1:
+                dc['class'] = ' '.join(col.get_text().split())
+            if j == 2:
+                dc['name'] = ' '.join(col.get_text().split())
+            if j == 3:
+                dc['chast'] = ' '.join(col.get_text().split())
+            if j == 4:
+                dc['ed_izm'] = ' '.join(col.get_text().split())
+            if j == 5:
+                dc['ssd'] = ' '.join(col.get_text().split())
+            if j == 6:
+                dc['skd'] = ' '.join(col.get_text().split())
+        rl.append(dc)
+
+    d['rows'] = rl
+    return d
+
 
 
 if __name__ == "__main__":
@@ -162,6 +222,7 @@ if __name__ == "__main__":
     db = client['med_expert']
     db.drop_collection('standart_table1')
     db.drop_collection('standart_table2')
+    db.drop_collection('standart_table3')
 
     for file in files:
         _, file_extension = os.path.splitext(file)
@@ -178,5 +239,8 @@ if __name__ == "__main__":
 
         data = get_standart_table2(filename)
         db['standart_table2'].insert_one(data)
+
+        data = get_standart_table3(filename)
+        db['standart_table3'].insert_one(data)
 
     del_all_subdirectories(path)
