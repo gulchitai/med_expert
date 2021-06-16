@@ -42,6 +42,17 @@ def first_table_is_valid(table1):
         else:
             return True
 
+def second_table_is_valid(table):
+    rows = table.find_all("tr")
+    for i, row in enumerate(rows):
+        if i < 2:
+            continue
+        columns = row.find_all("td")
+        if len(columns) > 4:
+            return False
+        else:
+            return True
+
 def get_standart_table1(filename):
 
     f = open(filename, 'r', encoding="utf8")
@@ -52,17 +63,69 @@ def get_standart_table1(filename):
     #нужна проверка на первую таблицу
     if first_table_is_valid(tables[0])==False:
         tables.pop(0)
-
+    d = {}
     for k, table in enumerate(tables):
         if k > 2:
             break
         if k == 0:
-            d = {}
+
             rl = []
             num, date = get_number_date(filename)
             d['date'] = date
             d['number'] = num
-            d['table_name'] = table.find_previous_sibling('div').find_previous_sibling('div').get_text()
+            #d['table_name'] = table.find_previous_sibling('div').find_previous_sibling('div').get_text()
+            d['table_name'] = 'Медицинские мероприятия для диагностики'
+
+        rows = table.find_all("tr")
+
+        for i, row in enumerate(rows):
+            if i < 2:
+                continue
+            columns = row.find_all("td")
+            dc = {}
+            for j, col in enumerate(columns):
+                if j == 0:
+                    dc['code'] = ' '.join(col.get_text().split())
+                if j == 1:
+                    dc['name'] = ' '.join(col.get_text().split())
+                if j == 2:
+                    dc['chast'] = ' '.join(col.get_text().split())
+                if j == 3:
+                    dc['krat'] = ' '.join(col.get_text().split())
+            rl.append(dc)
+        if k == 2:
+            d['rows'] = rl
+    return d
+
+
+def get_standart_table2(filename):
+
+    f = open(filename, 'r', encoding="utf8")
+    result = f.read()
+    parsed_html = bs(result, 'lxml')
+    tables = parsed_html.find_all("table")
+
+    #нужна проверка на первую таблицу
+    if first_table_is_valid(tables[0])==False:
+        tables.pop(0)
+
+    #это все первая таблица
+    tables.pop(0)
+    tables.pop(0)
+    tables.pop(0)
+
+    d = {}
+
+    for k, table in enumerate(tables):
+        if second_table_is_valid(table)==False:
+            break
+        if k == 0:
+            rl = []
+            num, date = get_number_date(filename)
+            d['date'] = date
+            d['number'] = num
+            #d['table_name'] = table.find_previous_sibling('div').find_previous_sibling('div').get_text()
+            d['table_name'] = 'Медицинские услуги для лечения заболевания'
 
         rows = table.find_all("tr")
 
@@ -98,6 +161,7 @@ if __name__ == "__main__":
     client = MongoClient('localhost', 27017)
     db = client['med_expert']
     db.drop_collection('standart_table1')
+    db.drop_collection('standart_table2')
 
     for file in files:
         _, file_extension = os.path.splitext(file)
@@ -111,5 +175,8 @@ if __name__ == "__main__":
         filename += '.htm'
         data = get_standart_table1(filename)
         db['standart_table1'].insert_one(data)
+
+        data = get_standart_table2(filename)
+        db['standart_table2'].insert_one(data)
 
     del_all_subdirectories(path)
