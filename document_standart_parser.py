@@ -2,7 +2,19 @@ from bs4 import BeautifulSoup as bs
 from pprint import pprint
 
 import re
+import os
+import zipfile
+import shutil
 from pymongo import MongoClient
+
+def get_immediate_subdirectories(a_dir):
+    return [os.path.join(path, name) for name in os.listdir(a_dir)
+            if os.path.isdir(os.path.join(a_dir, name))]
+
+def del_all_subdirectories(path):
+    list_catalogs_for_del = get_immediate_subdirectories(path)
+    for catalog in list_catalogs_for_del:
+        shutil.rmtree(catalog)
 
 def get_number_date(filename):
     match = re.search(r'(\d+.\d+.\d+)', filename)
@@ -19,9 +31,9 @@ def get_number_date(filename):
             break
     return num, date
 
-def get_standart_table1():
+def get_standart_table1(filename):
 
-    filename = './docs/Приказ Минздрава России от 20.12.2012 N 1095н  Об утверждени.htm'
+    #filename = './docs/Приказ Минздрава России от 20.12.2012 N 1095н  Об утверждени.htm'
 
     f = open(filename, 'r', encoding="utf8")
     result = f.read()
@@ -66,9 +78,25 @@ if __name__ == "__main__":
 
     path = ".\docs\Стандарты"
 
+    del_all_subdirectories(path)
+
+    files = os.listdir(path)
+
     client = MongoClient('localhost', 27017)
     db = client['med_expert']
     db.drop_collection('standart_table1')
 
-    data = get_standart_table1()
-    db['standart_table1'].insert_one(data)
+    for file in files:
+        _, file_extension = os.path.splitext(file)
+        if file_extension != '.zip':
+            continue
+        filename = os.path.join(path, file)
+
+        with zipfile.ZipFile(filename, "r") as zip_ref:
+            zip_ref.extractall(path)
+        filename, _ = os.path.splitext(filename)
+        filename += '.htm'
+        data = get_standart_table1(filename)
+        db['standart_table1'].insert_one(data)
+
+    del_all_subdirectories(path)
