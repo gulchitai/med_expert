@@ -222,7 +222,6 @@ def get_standart_header(filename):
     d['number'] = num
 
     #возраст
-
     elems = parsed_html.find_all('div', text=re.compile('Возраст'))
     elems = elems + parsed_html.find_all('div', text=re.compile('возраст'))
 
@@ -230,19 +229,6 @@ def get_standart_header(filename):
         if elem.get_text().find(':') > -1:
             d['vozrast'] = get_value(elem.contents[0])
 
-    '''
-    elem = parsed_html.find('div', text=re.compile('Возраст'))
-    if elem is None:
-        elem = parsed_html.find('div', text=re.compile('возраст'))
-    if elem is not None:
-        if elem.get_text().find(':') == -1:
-            elem = elem.find('div', text=re.compile('возраст'))
-            if elem is None:
-                elem = elem.find('div', text=re.compile('Возраст'))
-                
-        if elem is not None:
-            d['vozrast'] = get_value(elem.contents[0])
-    '''
 
     #пол
     elem = parsed_html.find('div', text=re.compile('Пол'))
