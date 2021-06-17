@@ -208,6 +208,9 @@ def get_standart_table3(filename):
     d['rows'] = rl
     return d
 
+def get_value(str):
+    return str[str.find(":")+1:]
+
 def get_standart_header(filename):
 
     f = open(filename, 'r', encoding="utf8")
@@ -219,51 +222,67 @@ def get_standart_header(filename):
     d['number'] = num
 
     #возраст
+
+    elems = parsed_html.find_all('div', text=re.compile('Возраст'))
+    elems = elems + parsed_html.find_all('div', text=re.compile('возраст'))
+
+    for elem in elems:
+        if elem.get_text().find(':') > -1:
+            d['vozrast'] = get_value(elem.contents[0])
+
+    '''
     elem = parsed_html.find('div', text=re.compile('Возраст'))
-    if elem == None:
+    if elem is None:
         elem = parsed_html.find('div', text=re.compile('возраст'))
-    if elem != None:
-        d['vozrast'] = elem.contents[0]
+    if elem is not None:
+        if elem.get_text().find(':') == -1:
+            elem = elem.find('div', text=re.compile('возраст'))
+            if elem is None:
+                elem = elem.find('div', text=re.compile('Возраст'))
+                
+        if elem is not None:
+            d['vozrast'] = get_value(elem.contents[0])
+    '''
 
     #пол
     elem = parsed_html.find('div', text=re.compile('Пол'))
     if elem != None:
-        d['pol'] = elem.contents[0]
+        d['pol'] = get_value(elem.contents[0])
 
     #Вид медицинской помощи
     elem = parsed_html.find('div', text=re.compile('Вид медицинской помощи'))
     if elem != None:
-        d['vid'] = elem.contents[0]
+        d['vid'] = get_value(elem.contents[0])
 
     #Условия оказания
     elem = parsed_html.find('div', text=re.compile('Условия оказания'))
     if elem != None:
-        d['usloviya'] = elem.contents[0]
+        d['usloviya'] = get_value(elem.contents[0])
 
     #Форма оказания
     elem = parsed_html.find('div', text=re.compile('Форма оказания'))
     if elem != None:
-        d['forma'] = elem.contents[0]
+        d['forma'] = get_value(elem.contents[0])
 
     # Фаза
     elem = parsed_html.find('div', text=re.compile('Фаза'))
     if elem != None:
-        d['faza'] = elem.contents[0]
+        d['faza'] = get_value(elem.contents[0])
 
     # Стадия
     elem = parsed_html.find('div', text=re.compile('Стадия'))
     if elem != None:
-        d['stadiya'] = elem.contents[0]
+        d['stadiya'] = get_value(elem.contents[0])
 
     # Осложнения
     elem = parsed_html.find('div', text=re.compile('Осложнения'))
     if elem != None:
-        d['oslozneniya'] = elem.contents[0]
+        d['oslozneniya'] = get_value(elem.contents[0])
 
     # Средние сроки лечения
     elem = parsed_html.find('div', text=re.compile('Средн'))
     if elem != None:
-        d['sroki'] = elem.contents[0]
+        d['sroki'] = get_value(elem.contents[0])
 
     return d
 
