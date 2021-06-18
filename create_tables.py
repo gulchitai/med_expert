@@ -18,6 +18,11 @@ def get_number_date(prikaz):
             break
     return num, date
 
+def get_name_kriteriy(s):
+    s = s[:s.find('(')]
+    s = s[s.find(' ')+1:]
+    return s
+
 def create_tables():
 
     client = MongoClient('localhost', 27017)
@@ -175,6 +180,16 @@ def create_tables():
     df.set_index(['КодСтандарта', 'КодМКБ'], drop=True, inplace=True)
     df.to_sql('Стандарты_МКБ', engine)
     print("Создана таблица Стандарты_МКБ")
+
+    # ****************************** КритерииКачества *****************************************
+    df = pd.DataFrame(list(db["prikaz203n"].find({})))
+    df['Наименование'] = df['p'].apply(get_name_kriteriy)
+    df = df.rename(columns={'tr': 'ЧекЛист'})
+    df['Код'] = df.index
+    df.set_index('Код', drop=True, inplace=True)
+    df = df[['Наименование', 'ЧекЛист']]
+    df.to_sql('КритерииКачества', engine)
+    print("Создана таблица КритерииКачества")
 
 if __name__ == "__main__":
     create_tables()
