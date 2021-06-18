@@ -144,5 +144,37 @@ def create_tables():
     df.to_sql('Стандарты', engine)
     print("Создана таблица Стандарты")
 
+    # ********************************* Стандарты-МКБ ****************************************
+    df = pd.DataFrame(list(db["standart"].find({})))
+
+    l = []
+    for i, row in df.iterrows():
+        lst_mkb = row['mkb']
+        for s in lst_mkb:
+            d = {}
+            d['Заголовок'] = row['title']
+            d['НаименованиеСтандарта'] = row['name']
+            if len(row['doc_name']) > 0:
+                d['НомерПриказа'], d['ДатаПриказа'] = get_number_date(row['doc_name'][0])
+            sp = s.split(sep=' ')
+            mkb = sp[0]
+            if mkb == 'N':
+                mkb += sp[1]
+            if mkb == '':
+                continue
+            d['КодМКБ'] = mkb
+            l.append(d)
+    df = pd.DataFrame(l)
+
+    df_s = pd.read_sql_query('select "Код", "НомерПриказа", "ДатаПриказа"  from public."Стандарты"', con=engine)
+    df_s['ДатаПриказа'] = pd.to_datetime(df_s['ДатаПриказа'])
+    df['ДатаПриказа'] = pd.to_datetime(df['ДатаПриказа'])
+    df = pd.merge(df, df_s, on=['НомерПриказа', 'ДатаПриказа'], how='inner')
+    df = df.rename(columns={'Код': 'КодСтандарта'})
+    df = df[['КодСтандарта', 'КодМКБ', 'НаименованиеСтандарта', 'Заголовок']]
+    df.set_index(['КодСтандарта', 'КодМКБ'], drop=True, inplace=True)
+    df.to_sql('Стандарты_МКБ', engine)
+    print("Создана таблица Стандарты_МКБ")
+
 if __name__ == "__main__":
     create_tables()
