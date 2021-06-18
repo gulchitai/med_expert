@@ -1,6 +1,22 @@
 from pymongo import MongoClient
 import pandas as pd
 from sqlalchemy import create_engine
+import re
+
+def get_number_date(prikaz):
+    match = re.search(r'(\d+.\d+.\d+)', prikaz)
+    date = match.group(1)
+    lst = prikaz.split(sep=" ")
+    flag = False
+    num = ''
+    for s in lst:
+        if s == 'N':
+            flag = True
+            continue
+        if flag:
+            num = s
+            break
+    return num, date
 
 def create_tables():
 
