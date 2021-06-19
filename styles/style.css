@@ -1,0 +1,143 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+header {
+  border-bottom: 1px solid #DFDFDF;
+}
+
+header .navbar-brand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .nav-link {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+header .fa-heartbeat {
+  margin-right: 10px;
+  font-size: 30px;
+  color: #dc3545;
+}
+
+.main__card-box {
+  height: 100%;
+  margin-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main__card-box .card-box__card {
+  width: 550px;
+}
+
+.main__card-box .card-img {
+  height: 350px;
+}
+
+.main__card-box .card-img-overlay {
+  top: 20%;
+  text-align: center;
+}
+
+.main-expertise .btn-marginTop {
+  margin: 40px 0;
+}
+
+.main-expertise .btn-center {
+  text-align: center;
+}
+
+.main-expertise .table-wrapper {
+  height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.main-expertise .table-wrapper::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.main-expertise .table-wrapper::-webkit-scrollbar-thumb {
+  background: #0d6efd;
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+.main-expertise .table-wrapper::-webkit-scrollbar-track {
+  background: #f9f9f9;
+}
+
+.main-expertise tbody, .main-expertise td, .main-expertise tfoot, .main-expertise th, .main-expertise thead, .main-expertise tr {
+  border-style: none;
+}
+
+.main-expertise .files input {
+  outline: 2px dashed #0d6efd;
+  outline-offset: -10px;
+  -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  padding: 120px 0px 85px 35%;
+  text-align: center !important;
+  margin: 0;
+  width: 100% !important;
+}
+
+.main-expertise .files input:focus {
+  outline: 2px dashed #0d6efd;
+  outline-offset: -10px;
+  -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  border: 1px solid #0d6efd;
+}
+
+.main-expertise .patientData, .main-expertise .standardData {
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main-expertise .сriteriaData, .main-expertise .clinicalRecommendationsData {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+  padding: 30px;
+}
+
+.main-expertise .warning {
+  color: #dc3545;
+  font-weight: bold;
+}
+/*# sourceMappingURL=style.css.map */

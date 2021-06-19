@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/bootstrap-5.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="styles/fontAwesome/css/all.min.css" rel="stylesheet" />
+    <link href="styles/style.css" rel="stylesheet">
+    <title>Med Tech</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-heartbeat"></i>
+                    Интеллмед
+                </a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Иванов И.И.
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="expertise.html">Документы</a></li>
+                      <li><a class="dropdown-item" href="analytics.html">Аналитика</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Настройки</a></li>
+                </div>
+            </div>
+          </nav>
+    </header>
+    <div class="main-expertise">
+        <div class="container">
+            <button class="btn btn-primary btn-marginTop" data-bs-toggle="modal" data-bs-target="#upload-files-modal-btn">Загрузить документ</button>
+            <div class="modal fade" id="upload-files-modal-btn" tabindex="-1" aria-labelledby="upload-files-modal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="upload-files-modal">Загрузка документов</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group files">
+                            <input type="file" class="form-control" multiple="" placeholder="Выбрать файл">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal"data-bs-toggle="modal" data-bs-target="#result-modal-btn">Загрузить</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="modal fade" id="result-modal-btn" tabindex="-1" aria-labelledby="result-modal" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="result-modal">Результаты экспертизы</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="patientData">
+                                <h6>
+                                    Ф.И.О:
+                                    <small class="text-muted">Иванов Иван Иванович</small>
+                                </h6>
+                                <h6>
+                                    Дата рождения:
+                                    <small class="text-muted">20.09.1989</small>
+                                </h6>
+                            </div>
+                            <div class="сriteriaData">
+                                <div class="standardData">
+                                    <h6 class="warning">
+                                        Не выполнены следующие критерии качества
+                                    </h6>
+                                    <a href="https://www.garant.ru/products/ipo/prime/doc/71575880/">Приказ Министерства здравоохранения РФ от 10.05.2017 г. № 203н</a>
+                                </div>
+                                <small class="text-muted">
+                                    1. Выполнен осмотр врачом-инфекционистом не позднее 1 часа от момента поступления в стационар. 
+                                </small>
+                                <small class="text-muted">
+                                    2. Выполнен осмотр врачом-неврологом не позднее 24 часов от момента поступления в стационар (при наличии неврологических нарушений). 
+                                </small>
+                                <small class="text-muted">
+                                    3. Выполнен общий (клинический) анализ крови развернутый. 
+                                </small>
+                                <small class="text-muted">
+                                    4. Выполнена спинномозговая пункция и исследование спинномозговой жидкости (цитоз, белок, глюкоза, лактат, цитологическое исследование) не позднее 6 часов от момента установления диагноза (при нейроборрелиозе и при отсутствии медицинских противопоказаний). 
+                                </small>
+                                <small class="text-muted">
+                                    5. Выполнена повторная спинномозговая пункция и повторное исследование спинномозговой жидкости (цитоз, белок, глюкоза, лактат, цитологическое исследование) (при нейроборрелиозе).
+                                </small>
+                                <small class="text-muted"> 
+                                    6. Выполнено определение антител к борелии Бургдорфера (Borrelia burgdorferi) в крови. 
+                                </small>
+                                <small class="text-muted">
+                                    7. Выполнена рентгенография пораженного сустава и\/или ультразвуковое исследование пораженного сустава (при суставном синдроме).
+                                </small>
+                                <small class="text-muted">
+                                    8. Проведена терапия антибактериальными лекарственными препаратами (при отсутствии медицинских противопоказаний). 
+                                </small>
+                                <small class="text-muted">
+                                    9. Достигнута стойкая нормализация температуры тела на момент выписки из стационара. 
+                                </small>
+                                <small class="text-muted">
+                                    10. Исчезновение эритемы на момент выписки из стационара. 
+                                </small>
+                                <small class="text-muted">
+                                    11. Достигнута нормализация уровня лейкоцитов в периферической крови на момент выписки из стационара
+                                </small>
+                            </div>
+                            <div class="clinicalRecommendationsData">
+                                <div class="standardData">
+                                    <h6 class="warning">
+                                        Строки не соответсвующие стандарту
+                                    </h6>
+                                    <a href="http://www.consultant.ru/document/cons_doc_LAW_145580">Приказ Министерства здравоохранения РФ от 20.12.2012 г. № 1095н</a>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Имя таблицы</th>
+                                            <th scope="col">Номер строки</th>
+                                            <th scope="col">Имя столбца</th>
+                                            <th scope="col">Текст ошибки</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Таблица лечения</td>
+                                            <td>1</td>
+                                            <td>Код услуги</td>
+                                            <td>Услуга не соответсвует стандарту № 1095н от 20.09.2012 г.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Таблица лекарств</td>
+                                            <td>0</td>
+                                            <td>Метоклопрамид</td>
+                                            <td>Превышена дозировка.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>     
+                            </div>
+                            <div class="clinicalRecommendationsData">
+                                <div class="standardData">
+                                    <h6 class="warning">
+                                        Строки отсутствующие в истории болезни
+                                    </h6>
+                                    <a href="http://www.consultant.ru/document/cons_doc_LAW_145580">Приказ Министерства здравоохранения РФ от 20.12.2012 г. № 1095н</a>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Имя таблицы</th>
+                                            <th scope="col">Код услуги</th>
+                                            <th scope="col">Наименование услуги</th>
+                                            <th scope="col">Средняя частота</th>
+                                            <th scope="col">Средняя кратность</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Таблица лечения</td>
+                                            <td>B03.016.003</td>
+                                            <td>Общий (клинический) анализ крови развернутый</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Имя таблицы</th>
+                                            <th scope="col">Код</th>
+                                            <th scope="col">Классификация</th>
+                                            <th scope="col">Наименование</th>
+                                            <th scope="col">Средняя частота</th>
+                                            <th scope="col">Единица измерения</th>
+                                            <th scope="col">ССД</th>
+                                            <th scope="col">СКД</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Таблица лекарств</td>
+                                            <td>N02BE</td>
+                                            <td>Анилиды</td>
+                                            <td>Парацетамол</td>
+                                            <td>1</td>
+                                            <td>мг.</td>
+                                            <td>500</td>
+                                            <td>2500</td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Название документа</th>
+                          <th scope="col">Дата проверки</th>
+                          <th scope="col">Оценка</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Экспертиза 1</td>
+                            <td>01.01.2021</td>
+                            <td>57%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Экспертиза 2</td>
+                            <td>02.01.2021</td>
+                            <td>98%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Экспертиза 3</td>
+                            <td>03.01.2021</td>
+                            <td>76%</td>
+                            <td class="btn-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#result-modal-btn">Результаты проверки</button>
+                            </td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="styles/bootstrap-5.0.1/js/bootstrap.min.js"></script>
+</body>
+</html>
