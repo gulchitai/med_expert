@@ -232,5 +232,28 @@ def create_tables():
     df.to_sql('КритерииКачества_МКБ', engine)
     print("Создана таблица КритерииКачества_МКБ")
 
+    # ****************************** Стандарты_Диагностика *********************************
+    df = pd.DataFrame(list(db["standart_table1"].find({})))
+    df = df.rename(columns={'date': 'ДатаПриказа', 'number': 'НомерПриказа'})
+    df['ДатаПриказа'] = pd.to_datetime(df['ДатаПриказа'])
+    df_s = pd.read_sql_query('select "Код", "НомерПриказа", "ДатаПриказа"  from public."Стандарты"', con=engine)
+    df = pd.merge(df, df_s, on=['НомерПриказа', 'ДатаПриказа'], how='inner')
+    l = []
+    for i, row in df.iterrows():
+        for r in row['rows']:
+            d = {}
+            d['КодСтандарта'] = row['Код']
+            d['КодУслуги'] = r.get('code', '')
+            d['НаименованиеУслуги'] = r.get('name', '')
+            d['СредняяЧастота'] = r.get('chast', '')
+            d['СредняяКратность'] = r.get('krat', '')
+            l.append(d)
+    df = pd.DataFrame(l)
+    df['Код'] = df.index
+    df.set_index(['Код'], drop=True, inplace=True)
+    df.to_sql('Стандарты_Диагностика', engine)
+    print("Создана таблица Стандарты_Диагностика")
+
+
 if __name__ == "__main__":
     create_tables()
