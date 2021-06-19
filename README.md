@@ -7,7 +7,7 @@
 6. Реализован интерфейс сайта сервиса с возможностью загрузки данных конкретного случая с выводом информации о расхождении с нормативной документацией (протокол сверки).
 
 Основной стек технологий:
-css, js, html, python pandas, mongodb, postgres, C#, docker, REST, Entity Framework.
+  css, js, html, python pandas, mongodb, postgres, C#, docker, REST, Entity Framework.
 
 Среда запуска:
 1. развертывание сервиса производится в среде windows;
@@ -20,7 +20,7 @@ css, js, html, python pandas, mongodb, postgres, C#, docker, REST, Entity Framew
 'postgresql://postgres:123@localhost:5432/med_expert'
 
 Выполнение миграций
-Для выпуснения миграций необходимо последовательно запускать следующие питон скрипты:
+  Для выпуснения миграций необходимо последовательно запускать следующие питон скрипты:
 consultant_plus_parser.py
 garant_parser.py
 document_standart_parser.py
