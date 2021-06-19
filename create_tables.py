@@ -23,6 +23,30 @@ def get_name_kriteriy(s):
     s = s[s.find(' ')+1:]
     return s
 
+def get_mkb(s):
+    l = []
+    s1 = s[s.find(':') + 1:]
+    for i in s1.split():
+        stroka = ''
+        if len(i) < 2:
+            continue
+        if i[len(i) - 1].isdigit() == False:
+            stroka = i[:-1]
+        else:
+            stroka = i
+
+        deleted_symbols = r'[+*]'
+        stroka = re.sub(deleted_symbols, '', stroka)
+        count = 0
+        for b in stroka:
+            if (b.isdigit() == False) and (b != '.'):
+                count += 1
+
+        if count == 1:
+            l.append(stroka)
+    return l
+
+
 def create_tables():
 
     client = MongoClient('localhost', 27017)
