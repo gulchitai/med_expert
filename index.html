@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/bootstrap-5.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="styles/fontAwesome/css/all.min.css" rel="stylesheet" />
+    <link href="styles/style.css" rel="stylesheet">
+    <title>Med Tech</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-heartbeat"></i>
+                    Интеллмед
+                </a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Иванов И.И.
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="expertise.html">Документы</a></li>
+                      <li><a class="dropdown-item" href="analytics.html">Аналитика</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Настройки</a></li>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="container main__card-box">
+            <a class="check_documents card-box__card" href="expertise.html">
+                <div class="card bg-danger text-white">
+                    <div class="card-img"></div>
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">Экспертиза качества медицинской помощи</h5>
+                      <p class="card-text">Сервис для загрузки документов в систему автоматической экспертизы оказываемой медицинской помощи</p>
+                    </div>
+                </div>
+            </a>
+            <a class="analytics card-box__card" href="analytics.html">
+                <div class="card bg-primary text-white">
+                    <div class="card-img"></div>
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">Аналитика</h5>
+                      <p class="card-text">Сервис для аналитики оказываемой медицинской помощи</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="styles/bootstrap-5.0.1/js/bootstrap.min.js"></script>
+</body>
+</html>

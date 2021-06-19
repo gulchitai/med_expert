@@ -1,0 +1,110 @@
+$colorBlue: #0d6efd;
+$colorRed: #dc3545;
+$borderColor: #DFDFDF;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+header {
+    border-bottom: 1px solid $borderColor;
+    .navbar-brand {
+        display: flex;
+    }
+    .nav-link {
+        color: rgba(0,0,0,.7);
+    }
+    .fa-heartbeat{
+        margin-right: 10px;
+        font-size: 30px;
+        color: $colorRed;
+    }
+}
+
+.main__card-box {
+    height: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .card-box__card {
+        width: 550px;
+    }
+    .card-img {
+        height: 350px;
+    }
+    .card-img-overlay {
+        top: 20%;    
+        text-align: center;
+    }
+}
+
+.main-expertise {
+    .btn-marginTop {
+        margin: 40px 0;
+    }
+    .btn-center {
+        text-align: center;
+    }
+    .table-wrapper {
+        height: 600px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    .table-wrapper::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+    .table-wrapper::-webkit-scrollbar-thumb {
+        background: $colorBlue;
+        opacity: 0.8;
+        border-radius: 5px;
+    }
+    .table-wrapper::-webkit-scrollbar-track {
+        background: #f9f9f9;
+    }
+    tbody, td, tfoot, th, thead, tr {
+        border-style: none;
+    }
+    .files input {
+        outline: 2px dashed $colorBlue;
+        outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        padding: 120px 0px 85px 35%;
+        text-align: center !important;
+        margin: 0;
+        width: 100% !important;
+    }
+    .files input:focus{     outline: 2px dashed $colorBlue;  outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid $colorBlue;
+    }
+    .patientData, .standardData {
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .сriteriaData, .clinicalRecommendationsData {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $borderColor;
+        border-radius: 4px;
+        padding: 30px;
+    }
+    .warning {
+        color: $colorRed;
+        font-weight: bold;
+    }
+}
