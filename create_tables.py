@@ -278,6 +278,39 @@ def create_tables():
     df.to_sql('Стандарты_Лечение', engine)
     print("Создана таблица Стандарты_Лечение")
 
+    # ****************************** Стандарты_Лекарства *********************************
+    df = pd.DataFrame(list(db["standart_table3"].find({})))
+    df = df.rename(columns={'date': 'ДатаПриказа', 'number': 'НомерПриказа'})
+    df['ДатаПриказа'] = pd.to_datetime(df['ДатаПриказа'])
+    df_s = pd.read_sql_query('select "Код", "НомерПриказа", "ДатаПриказа"  from public."Стандарты"', con=engine)
+    df = pd.merge(df, df_s, on=['НомерПриказа', 'ДатаПриказа'], how='inner')
+
+    l = []
+    for i, row in df.iterrows():
+        if (isinstance(row['rows'], list)):
+            code = ''
+            cl = ''
+            for r in row['rows']:
+                d = {}
+                if r.get('code', '') != '':
+                    code = r.get('code', '')
+                    cl = r.get('class', '')
+                    continue
+                d['КодСтандарта'] = row['Код']
+                d['КодПрепарата'] = code
+                d['Классификация'] = cl
+                d['Наименование'] = r.get('name', '')
+                d['СредняяЧастота'] = r.get('chast', '')
+                d['ЕдиницаИзмерения'] = r.get('ed_izm', '')
+                d['ССД'] = r.get('ssd', '')
+                d['СКД'] = r.get('skd', '')
+                l.append(d)
+    df = pd.DataFrame(l)
+    df['Код'] = df.index
+    df.set_index(['Код'], drop=True, inplace=True)
+    df.to_sql('Стандарты_Лекарства', engine)
+    print("Создана таблица Стандарты_Лекарства")
+
 
 if __name__ == "__main__":
     create_tables()
