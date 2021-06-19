@@ -216,7 +216,21 @@ def create_tables():
     print("Создана таблица КритерииКачества")
 
     # ****************************** КритерииКачества_МКБ *************************************
+    df = pd.DataFrame(list(db["prikaz203n"].find({})))
+    df['КодКритерияКачества'] = df.index
+    l = []
+    for i, row in df.iterrows():
+        lst_mkb = get_mkb(row['p'])
+        for mkb in lst_mkb:
+            d = {}
+            d['КодКритерияКачества'] = row['КодКритерияКачества']
+            d['КодMKБ'] = mkb
+            l.append(d)
 
+    df = pd.DataFrame(l)
+    df.set_index(['КодКритерияКачества', 'КодMKБ'], drop=True, inplace=True)
+    df.to_sql('КритерииКачества_МКБ', engine)
+    print("Создана таблица КритерииКачества_МКБ")
 
 if __name__ == "__main__":
     create_tables()
