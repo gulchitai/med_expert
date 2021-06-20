@@ -33,6 +33,14 @@ body {
     max-width: 1200px;
 }
 
+.hide {
+    display: none;
+}
+
+.notShowDoctor {
+    display: none !important;
+}
+
 header {
     border-bottom: 1px solid $borderColor;
     .navbar-brand {
@@ -70,11 +78,16 @@ header {
 }
 
 .main-expertise {
-    .btn-marginTop {
+    .controls {
         margin: 40px 0;
-    }
-    .btn-center {
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        .form-select {
+            max-width: 300px;
+        }
+        .btn-center {
+            text-align: center;
+        }
     }
     .table-wrapper {
         height: 600px;
@@ -127,12 +140,6 @@ header {
 }
 
 .main-analytics {
-    .hide {
-        display: none;
-    }
-    .notShowDoctor {
-        display: none !important;
-    }
     .branch {
         margin-top: 20px;
         display: flex;
@@ -176,6 +183,13 @@ header {
     }
 }
 
-// .manager {
-//     display: none;
-// }
+.main-login {
+    .container{
+        display: flex;
+        justify-content: center;
+        margin-top: 60px;
+        .login {
+            max-width: 600px;
+        }
+    }
+}

@@ -27,6 +27,14 @@ body {
   max-width: 1200px;
 }
 
+.hide {
+  display: none;
+}
+
+.notShowDoctor {
+  display: none !important;
+}
+
 header {
   border-bottom: 1px solid #DFDFDF;
 }
@@ -77,11 +85,21 @@ header .fa-heartbeat {
   text-align: center;
 }
 
-.main-expertise .btn-marginTop {
+.main-expertise .controls {
   margin: 40px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.main-expertise .btn-center {
+.main-expertise .controls .form-select {
+  max-width: 300px;
+}
+
+.main-expertise .controls .btn-center {
   text-align: center;
 }
 
@@ -155,14 +173,6 @@ header .fa-heartbeat {
   padding: 30px;
 }
 
-.main-analytics .hide {
-  display: none;
-}
-
-.main-analytics .notShowDoctor {
-  display: none !important;
-}
-
 .main-analytics .branch {
   margin-top: 20px;
   display: -webkit-box;
@@ -222,5 +232,19 @@ header .fa-heartbeat {
 
 .main-analytics .graph .text-center {
   padding-bottom: 30px;
+}
+
+.main-login .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 60px;
+}
+
+.main-login .container .login {
+  max-width: 600px;
 }
 /*# sourceMappingURL=style.css.map */
