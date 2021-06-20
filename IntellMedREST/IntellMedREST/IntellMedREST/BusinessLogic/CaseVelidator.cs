@@ -12,10 +12,6 @@ using System.Threading.Tasks;
 namespace IntellMedREST.BusinessLogic
 {
 
-
-
-
-
 	public class CaseVelidator
 	{
 

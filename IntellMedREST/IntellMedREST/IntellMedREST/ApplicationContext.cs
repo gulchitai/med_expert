@@ -27,15 +27,18 @@ namespace IntellMedREST
 			modelBuilder.Entity<Lek>()
 			  .HasKey(t => t.ID);
 
-			modelBuilder.Entity<Case>()
-			  .HasMany(c => c.Diags)
-			  .WithOne(e => e.Case);
+			//modelBuilder.Entity<Case>()
+			//  .HasMany(c => c.Diags)
+			//  .WithOne(e => e.Case);
 
+			modelBuilder.Entity<Case>()
+			.HasMany<Diag>(g => g.Diags)
+			.WithOne(e => e.Case);
 
 		}
 
 
-		
+
 
 
 		public ApplicationContext()
