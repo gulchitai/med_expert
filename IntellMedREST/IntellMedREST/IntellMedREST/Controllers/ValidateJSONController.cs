@@ -79,8 +79,8 @@ namespace IntellMedREST.Controllers
 				Name = "Метоклопрамид",
 				AvgQty = 0.3M,
 				Uom = "мг",
-				SSD = 15,
-				SKD = 150
+				SSD = "15",
+				SKD = "150"
 			};
 			p.Leks.Add(lr);
 			var k = new List<Case>();

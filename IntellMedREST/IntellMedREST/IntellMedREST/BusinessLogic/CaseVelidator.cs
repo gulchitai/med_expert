@@ -1,4 +1,5 @@
-﻿using IntellMedREST.Data;
+﻿using IntellMedREST.Classes;
+using IntellMedREST.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,21 @@ namespace IntellMedREST.BusinessLogic
 
 
 
-	public class StDiag
-	{
-		public int Code { get; set; }
-		public int StCode { get; set; }
-		public string CodeUsl { get; set; }
-		public string NameUsl { get; set; }
-		public decimal AvgQty { get; set; }
-		public decimal AvgMult { get; set; }
-	}
+
 
 	public class CaseVelidator
 	{
-		
+
+		//public int Code { get; set; }
+		//public int StCode { get; set; }
+		//public string CodPrep { get; set; }
+		//public string Classif { get; set; }
+		//public string Name { get; set; }
+		//public decimal AvgQty { get; set; }
+		//public string Uom { get; set; }
+		//public string SSD { get; set; }
+		//public string SKD { get; set; }
+
 
 		public static string ValidateCase(Case cse)
 		{
@@ -55,6 +58,20 @@ namespace IntellMedREST.BusinessLogic
 
 			var   sqlStDiags = "select * from \"Стандарты_Диагностика\" where \"КодСтандарта\"="+Convert.ToInt32(singleCode[0]);
 			var stDiags = Helper.RawSqlQuery<StDiag>(sqlStDiags, x => new StDiag{ Code=Convert.ToInt32(x[0]), StCode= Convert.ToInt32(x[1]), CodeUsl = x[2].ToString(), NameUsl = x[3].ToString(), AvgQty = Convert.ToDecimal(x[4]), AvgMult = Convert.ToDecimal(x[5]) });
+
+			var sqlStLek = "select * from \"Стандарты_Лекарства\" where \"КодСтандарта\"=" + Convert.ToInt32(singleCode[0]);
+			var stLeks = Helper.RawSqlQuery<StLek>(sqlStLek, x => new StLek
+			{
+				Code = Convert.ToInt32(x["Код"]),
+				StCode = Convert.ToInt32(x[1]),
+				CodPrep = x[2].ToString(),
+				Classif = x[3].ToString(),
+				Name = x[4].ToString(),
+				AvgQty = Convert.ToDecimal(x[5].ToString()),
+				Uom = x[6].ToString(),
+				SSD = x[7].ToString(),
+				SKD = x[8].ToString()
+			});
 
 
 
