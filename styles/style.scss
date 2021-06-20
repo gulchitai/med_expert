@@ -1,6 +1,9 @@
 $colorBlue: #0d6efd;
 $colorRed: #dc3545;
+$colorYellow: #ffc107;
+$colorGreen: #17bd14;
 $borderColor: #DFDFDF;
+
 
 * {
     margin: 0;
@@ -9,6 +12,21 @@ $borderColor: #DFDFDF;
 
 body {
     height: 100%;
+}
+
+.warning {
+    color: $colorRed !important;
+    font-weight: bold;
+}
+
+.attention {
+    color: $colorYellow !important;
+    font-weight: bold;
+}
+
+.positive {
+    color: $colorGreen !important;
+    font-weight: bold;
 }
 
 .container {
@@ -103,8 +121,43 @@ header {
         border-radius: 4px;
         padding: 30px;
     }
-    .warning {
-        color: $colorRed;
-        font-weight: bold;
+}
+
+.main-analytics {
+    .branch {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        .form-select {
+            min-width: 300px;
+            margin-left: 65px;
+        }
+    }
+    .period {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        .input-group {
+            width: 40%;
+            min-width: 300px;
+        }
+    }
+    .info {
+        margin: 30px 0;
+        padding: 30px;
+        border: 1px solid $borderColor;
+        border-radius: 4px;
+        .infoTable1, .infoTable2, .infoTable3, .infoGraph{
+            padding: 30px;
+        }
+        tbody, td, tfoot, th, thead, tr {
+            border-color: $borderColor !important;
+        }
     }
 }
+
+// .manager {
+//     display: none;
+// }

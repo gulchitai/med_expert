@@ -8,6 +8,21 @@ body {
   height: 100%;
 }
 
+.warning {
+  color: #dc3545 !important;
+  font-weight: bold;
+}
+
+.attention {
+  color: #ffc107 !important;
+  font-weight: bold;
+}
+
+.positive {
+  color: #17bd14 !important;
+  font-weight: bold;
+}
+
 .container {
   max-width: 1200px;
 }
@@ -136,8 +151,53 @@ header .fa-heartbeat {
   padding: 30px;
 }
 
-.main-expertise .warning {
-  color: #dc3545;
-  font-weight: bold;
+.main-analytics .branch {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-analytics .branch .form-select {
+  min-width: 300px;
+  margin-left: 65px;
+}
+
+.main-analytics .period {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-analytics .period .input-group {
+  width: 40%;
+  min-width: 300px;
+}
+
+.main-analytics .info {
+  margin: 30px 0;
+  padding: 30px;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+}
+
+.main-analytics .info .infoTable1, .main-analytics .info .infoTable2, .main-analytics .info .infoTable3, .main-analytics .info .infoGraph {
+  padding: 30px;
+}
+
+.main-analytics .info tbody, .main-analytics .info td, .main-analytics .info tfoot, .main-analytics .info th, .main-analytics .info thead, .main-analytics .info tr {
+  border-color: #DFDFDF !important;
 }
 /*# sourceMappingURL=style.css.map */
