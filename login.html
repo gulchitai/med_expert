@@ -25,31 +25,35 @@
                       <li><a class="dropdown-item" href="expertise.html">Документы</a></li>
                       <li><a class="dropdown-item" href="analytics.html">Аналитика</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="login.html">Настройки</a></li>
+                      <li><a class="dropdown-item" href="#">Настройки</a></li>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="main">
-        <div class="container main__card-box">
-            <a class="check_documents card-box__card" href="expertise.html">
-                <div class="card bg-danger text-white">
-                    <div class="card-img"></div>
-                    <div class="card-img-overlay">
-                      <h1 class="card-title">Экспертиза</h1>
-                      <p class="card-text">Сервис для загрузки документов и автоматизированная экспертиза качества оказания медицинской помощи</p>
-                    </div>
+    <div class="main-login">
+        <div class="container">
+            <form class="login">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Пользователь</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Иванов И.И.</option>
+                        <option value="1">Петров П.П.</option>
+                        <option value="2">Сергеев С.С.</option>
+                        <option value="3">Антонова И.И.</option>
+                    </select>
                 </div>
-            </a>
-            <a class="analytics card-box__card" href="analytics.html">
-                <div class="card bg-primary text-white">
-                    <div class="card-img"></div>
-                    <div class="card-img-overlay">
-                      <h1 class="card-title">Аналитика</h1>
-                      <p class="card-text">Аналитика по экспертизе качества оказания медицинской помощи</p>
-                    </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
                 </div>
-            </a>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Запомнить пароль</label>
+                </div>
+                <div style="align-items: center;">
+                    <a href="index.html" class="btn btn-primary">Войти</a>
+                </div>
+              </form>
         </div>
     </div>
     <script src="styles/bootstrap-5.0.1/js/bootstrap.min.js"></script>

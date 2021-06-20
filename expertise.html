@@ -25,14 +25,22 @@
                       <li><a class="dropdown-item" href="expertise.html">Документы</a></li>
                       <li><a class="dropdown-item" href="analytics.html">Аналитика</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Настройки</a></li>
+                      <li><a class="dropdown-item" href="login.html">Настройки</a></li>
                 </div>
             </div>
           </nav>
     </header>
     <div class="main-expertise">
         <div class="container">
-            <button class="btn btn-primary btn-marginTop" data-bs-toggle="modal" data-bs-target="#upload-files-modal-btn">Загрузить документ</button>
+            <div class="controls">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#upload-files-modal-btn">Загрузить документ</button>
+                <select class="form-select notShowDoctor" aria-label="Default select example">
+                    <option selected>Иванов И.И.</option>
+                    <option value="1">Петров П.П.</option>
+                    <option value="2">Сергеев С.С.</option>
+                    <option value="3">Антонова И.И.</option>
+                </select>
+            </div>
             <div class="modal fade" id="upload-files-modal-btn" tabindex="-1" aria-labelledby="upload-files-modal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
@@ -494,5 +502,6 @@
         </div>
     </div>
     <script src="styles/bootstrap-5.0.1/js/bootstrap.min.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
