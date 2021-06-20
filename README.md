@@ -27,6 +27,8 @@ document_standart_parser.py
 
 Для заполнения бд Postgres необходимо запутить скрипт create_tables.py
 
+Для генерации фейковых историй болезни необходимо запустить скрипт generate_fake_cases.py
+
 Разработчики:
 Алсадаева Людмила @heezzinpang
 Сыч Григорий @SychGrigoriy

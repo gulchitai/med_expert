@@ -1,4 +1,5 @@
-﻿using IntellMedREST.Data;
+﻿using IntellMedREST.BusinessLogic;
+using IntellMedREST.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -85,9 +86,21 @@ namespace IntellMedREST.Controllers
 			var k = new List<Case>();
 			k.Add(p);
 			string json = JsonConvert.SerializeObject(k, Formatting.Indented);
-			throw new NotImplementedException();
 			return Ok();
 
+		}
+
+
+
+	
+
+		[HttpPost("ValidateCase")]
+		public async Task<IActionResult> ValidateCase(int id)
+		{
+			var db = new ApplicationContext();
+			var  cs = 	db.Cases.Single<Case>(t=>t.ID==id);
+			CaseVelidator.ValidateCase(cs);
+			return Ok();
 		}
 
 
@@ -103,19 +116,17 @@ namespace IntellMedREST.Controllers
 					using (var stream = new FileStream(filePath, FileMode.Create))
 					{
 						await formFile.CopyToAsync(stream);
-
-						
 					}
 				}
 			}
-			var ac = new ApplicationContext();
+			var db = new ApplicationContext();
 			var json = System.IO.File.ReadAllText(filePath);
 			List<Case> persons = JsonConvert.DeserializeObject<List<Case>>(json);
 			foreach (var p in persons)
 			{
-				ac.Cases.Add(p);
+				db.Cases.Add(p);
 			}
-			ac.SaveChanges();
+			db.SaveChanges();
 			return Ok(new { count = files.Count, size, filePath });
 		}
 		 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sych_\\Desktop\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj": {}
+    "C:\\Users\\sych_\\Desktop\\med_expert\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sych_\\Desktop\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj": {
+    "C:\\Users\\sych_\\Desktop\\med_expert\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sych_\\Desktop\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj",
+        "projectUniqueName": "C:\\Users\\sych_\\Desktop\\med_expert\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj",
         "projectName": "IntellMedREST",
-        "projectPath": "C:\\Users\\sych_\\Desktop\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj",
+        "projectPath": "C:\\Users\\sych_\\Desktop\\med_expert\\IntellMedREST\\IntellMedREST\\IntellMedREST\\IntellMedREST.csproj",
         "packagesPath": "C:\\Users\\sych_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sych_\\Desktop\\IntellMedREST\\IntellMedREST\\IntellMedREST\\obj\\",
+        "outputPath": "C:\\Users\\sych_\\Desktop\\med_expert\\IntellMedREST\\IntellMedREST\\IntellMedREST\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
@@ -66,6 +66,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [

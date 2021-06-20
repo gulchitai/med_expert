@@ -15,7 +15,7 @@ namespace IntellMedREST.Data
 		public string Name { get; set; }
 		public decimal AvgQty { get; set; }
 		public string Uom { get; set; }
-		public int SSD { get; set; }
-		public int SKD { get; set; }
+		public decimal SSD { get; set; }
+		public decimal SKD { get; set; }
 	}
 }
