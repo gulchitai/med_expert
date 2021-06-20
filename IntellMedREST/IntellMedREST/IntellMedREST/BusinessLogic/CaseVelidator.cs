@@ -62,16 +62,29 @@ namespace IntellMedREST.BusinessLogic
 			var sqlStLek = "select * from \"Стандарты_Лекарства\" where \"КодСтандарта\"=" + Convert.ToInt32(singleCode[0]);
 			var stLeks = Helper.RawSqlQuery<StLek>(sqlStLek, x => new StLek
 			{
-				Code = Convert.ToInt32(x["Код"]),
+				Code = Convert.ToInt32(x[0]),
 				StCode = Convert.ToInt32(x[1]),
 				CodPrep = x[2].ToString(),
 				Classif = x[3].ToString(),
 				Name = x[4].ToString(),
-				AvgQty = Convert.ToDecimal(x[5].ToString()),
+				AvgQty = x[5] != null  ? (x[5]==string.Empty?null:Convert.ToDecimal(x[5].ToString())) : null,
 				Uom = x[6].ToString(),
 				SSD = x[7].ToString(),
 				SKD = x[8].ToString()
 			});
+
+
+			var sqlStLech = "select * from \"Стандарты_Лечение\" where \"КодСтандарта\"=" + Convert.ToInt32(singleCode[0]);
+			var  stLech = Helper.RawSqlQuery<StLech>(sqlStLech,
+				x=> new StLech{
+					Code = Convert.ToInt32(x[0]),
+					StCode = Convert.ToInt32(x[1]),
+					CodeUsl = x[2].ToString(),
+					NameUsl = x[3].ToString(),
+					AvgQty = Convert.ToDecimal(x[4]),
+					AvgMult = Convert.ToDecimal(x[5])
+
+				});
 
 
 

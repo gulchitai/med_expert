@@ -12,7 +12,7 @@ namespace IntellMedREST.Classes
 		public string CodPrep { get; set; }
 		public string Classif { get; set; }
 		public string Name { get; set; }
-		public decimal AvgQty { get; set; }
+		public decimal? AvgQty { get; set; }
 		public string Uom { get; set; }
 		public string SSD { get; set; }
 		public string SKD { get; set; }
