@@ -60,6 +60,10 @@ header .fa-heartbeat {
           justify-content: space-between;
 }
 
+.main__card-box .card-text {
+  margin-top: 30px;
+}
+
 .main__card-box .card-box__card {
   width: 550px;
 }
@@ -69,7 +73,7 @@ header .fa-heartbeat {
 }
 
 .main__card-box .card-img-overlay {
-  top: 20%;
+  top: 25%;
   text-align: center;
 }
 
@@ -151,6 +155,14 @@ header .fa-heartbeat {
   padding: 30px;
 }
 
+.main-analytics .hide {
+  display: none;
+}
+
+.main-analytics .notShowDoctor {
+  display: none !important;
+}
+
 .main-analytics .branch {
   margin-top: 20px;
   display: -webkit-box;
@@ -199,5 +211,16 @@ header .fa-heartbeat {
 
 .main-analytics .info tbody, .main-analytics .info td, .main-analytics .info tfoot, .main-analytics .info th, .main-analytics .info thead, .main-analytics .info tr {
   border-color: #DFDFDF !important;
+}
+
+.main-analytics .graph {
+  margin: 30px 0;
+  padding: 30px;
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+}
+
+.main-analytics .graph .text-center {
+  padding-bottom: 30px;
 }
 /*# sourceMappingURL=style.css.map */
