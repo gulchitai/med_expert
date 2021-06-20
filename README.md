@@ -30,6 +30,7 @@ document_standart_parser.py
 Для генерации фейковых историй болезни необходимо запустить скрипт generate_fake_cases.py
 
 Как запустить приложение
+
 Наше приложение состоят из двух подсистем. Часть на питоне собирающая и трансформирующая данные запускается скриптами из PyCharm.
 Часть на C# запускается из Visual Studio, главный файл проекта med_expert\IntellMedREST\IntellMedREST\IntellMedREST.sln
 
