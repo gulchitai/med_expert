@@ -33,9 +33,12 @@ namespace IntellMedREST
 
 
 		}
-	
 
-	public ApplicationContext()
+
+		
+
+
+		public ApplicationContext()
 		{
 			//Database.EnsureCreated();
 		}
